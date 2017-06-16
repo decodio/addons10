@@ -391,6 +391,7 @@ var CmisMixin = {
          }
          this.cmis_location = result.location;
          this.cmis_backend_id = result.id;
+
      },
 
      on_cmis_config_loaded: function(result) {
@@ -405,6 +406,9 @@ var CmisMixin = {
          var self = this;
          $.when(this.cmis_config_loaded).done(function (){
              self.cmis_session = cmis.createSession(self.cmis_location);
+             if (self.backend.alfresco_ticket) {
+                self.cmis_session.setAlfrescoTicket(self.backend.alfresco_ticket);
+             }
              self.cmis_session.setGlobalHandlers(self.on_cmis_error, self.on_cmis_error);
              self.cmis_session_initialized.resolve();
          });

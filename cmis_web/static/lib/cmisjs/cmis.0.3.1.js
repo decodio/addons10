@@ -63,6 +63,23 @@
     };
 
     /**
+     * sets Alfresco ticket (token) for authentication
+     *
+     * @param {String} alf_ticket
+     * @return {CmisSession}
+     */
+    session.setAlfrescoTicket = function (alf_ticket) {
+      _defaultOptions.alf_ticket = alf_ticket;
+      _alf_ticket = alf_ticket;
+      // if Alfresco ticket is supplied, append it to url
+      if (_alf_ticket && url.indexOf('?alf_ticket=') == -1) {
+        url = url + '?alf_ticket=' + _alf_ticket;
+      }
+      return session;
+    };
+
+
+    /**
      * sets credentials for authentication
      *
      * @param {String} username
@@ -98,6 +115,7 @@
       if (_token) {
           options['token'] = _token;
       }
+
       var r = new CmisRequest(_get(url).query(options)).ok(function (data) {
         for (var repo in data) {
           session.defaultRepository = data[repo];
@@ -1162,7 +1180,6 @@
      * all cmis actions return a CmisRequest
      */
     function CmisRequest(req, text) {
-
       var callback_ok = _noop;
       var callback_notOk = _globalNotOk;
       var callback_error = _globalError;
@@ -1276,6 +1293,7 @@
     var _token = null;
     var _username = null;
     var _password = null;
+    var _alf_ticket = null;
     var _afterlogin;
 
     var _proxyUrl = null;
@@ -1291,6 +1309,11 @@
     var _http = function (method, url) {
       var r;
 
+      // if Alfresco ticket is supplied, append it to url
+      if (_alf_ticket && url.indexOf('?alf_ticket=') == -1) {
+        url = url + '?alf_ticket=' + _alf_ticket;
+      }
+
       if (_proxyUrl) {
         var proxy = require('superagent-proxy');
         r = proxy(request(method, url), _proxyUrl);
@@ -1298,7 +1321,7 @@
         r = request(method, url);
       }
 
-      if (_username && _password) {
+      if (_password) {
         r.auth(_username, _password);
       }
       if (_token) {
