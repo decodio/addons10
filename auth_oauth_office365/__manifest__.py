@@ -1,11 +1,13 @@
 {
     'name': "Office 365 oauth plugin",
-    'version': '0.3',
+    'version': '0.4',
     'maintainer': 'Decodio',
     'category': 'Tools',
     'website': '',
     'sequence': 1,
     'description': """
+
+Sign-in with Azure AD
 
  License: MIT
 
