@@ -1,9 +1,10 @@
 import werkzeug
-from openerp import http
-from openerp.http import request
-from openerp import SUPERUSER_ID
-from openerp.exceptions import AccessDenied
-from openerp.addons.web_oauth_o365.models.auth_oauth import _list_providers
+from odoo import http
+from odoo.http import request
+from odoo import SUPERUSER_ID
+from odoo.exceptions import AccessDenied
+# from odoo.addons.web_oauth_o365.models.auth_oauth import _list_providers
+from odoo.addons.auth_oauth.controllers.main import OAuthLogin
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -56,7 +57,7 @@ class office_365_auth(http.Controller):
         except AccessDenied:
             values['databases'] = None
 
-        providers = _list_providers(self)
+        providers = OAuthLogin.list_providers(self)
         values['providers'] = providers
 
         if request.httprequest.method == 'POST':

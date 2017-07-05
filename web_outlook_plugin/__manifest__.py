@@ -1,6 +1,6 @@
 {
     'name': "Outlook plugin",
-    'version': '8.0.0.1.5',
+    'version': '10.0.0.1.5',
     'author': 'Decodio',
     'category': 'Project',
     'website': '',
@@ -16,7 +16,7 @@ as URL for Outlook manifest.
  License: MIT
 
     """,
-    'depends': ['base', 'web', 'crm', 'web_oauth_o365'],
+    'depends': ['base', 'web', 'crm', 'auth_oauth'],
     'qweb': [],
     'data': ['views/TaskPane.xml', 'views/Home.xml', 'views/Manifest.xml'],
 }

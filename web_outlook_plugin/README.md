@@ -8,8 +8,12 @@ Features :
 
 
 ##Install
-The plugin was configured for Odoo v8.0.
+The plugin was configured for Odoo v10.0.
 Install as server-wide module.
+
+Use:
+/web_outlook_plugin/<db>/Manifest.xml
+as URL for Outlook manifest.
 
 ##Translation
 * - EN
