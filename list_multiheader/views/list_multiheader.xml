@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="assets_backend" name="web_calendar assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/list_multiheader/static/src/css/list_multiheader.css"/>
+
+                <script type="text/javascript" src="/list_multiheader/static/src/js/list_multiheader.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>
