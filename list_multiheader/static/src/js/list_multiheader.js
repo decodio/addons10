@@ -14,6 +14,8 @@ odoo.define('list_multiheader', function (require) {
     var _lt = core._lt;
     var QWeb = core.qweb;
 
+    var list_widget_registry = core.list_widget_registry;
+
     var ListViewMultiHeader = ListView.extend({
         _template: 'ListViewMultiHeader',
         require_fields: true,
