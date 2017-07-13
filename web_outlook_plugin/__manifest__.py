@@ -4,6 +4,8 @@
     'author': 'Decodio',
     'category': 'Project',
     'website': '',
+    'installable': False,
+
     'sequence': 1,
     'description': """
 Install as server-wide component!
