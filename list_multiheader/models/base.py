@@ -100,19 +100,9 @@ class IrUiView(models.Model):
             cls._fields['type'].selection = tuple(set(tmp))
         super(IrUiView, self)._setup_fields(partial)
 
-    """
-    def __init__(self, pool, cr):
-        res = super(IrUiView, self).__init__(pool, cr)
-        select = [k for k, v in self._columns['type'].selection]
-        if VIEW_TYPE[0] not in select:
-            self._columns['type'].selection.append(VIEW_TYPE)
-        return res
-    """
-
     @api.multi
     def _check_xml_list_multiheader(self):
         for view in self:
-            print "blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
             if self.type == MULTIHEADER_VIEW[0]:
                 fvg = self.env[view.model].fields_view_get(view_id=view.id, view_type=view.type)
                 view_arch_utf8 = fvg['arch']
