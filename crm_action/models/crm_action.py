@@ -14,7 +14,8 @@ class CrmAction(models.Model):
     _name = 'crm.action'
     _description = 'CRM Action'
     _order = 'date'
-    _rec_name = 'display_name'
+    # _rec_name = 'display_name'
+    _rec_name = 'details'
 
     def default_action_type(self):
         action_types = self.search_action_types()
@@ -86,7 +87,6 @@ class CrmAction(models.Model):
     def button_set_to_draft(self):
         self.write({'state': 'draft'})
 
-    @api.multi
     @api.depends('action_type_id.name', 'details')
     def _compute_display_name(self):
         for action in self:

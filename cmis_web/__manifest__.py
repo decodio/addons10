@@ -20,6 +20,5 @@
     'data': [
         'views/cmis_web.xml'
     ],
-    'installable': False,
 
 }
