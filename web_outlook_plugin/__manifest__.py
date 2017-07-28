@@ -4,7 +4,7 @@
     'author': 'Decodio',
     'category': 'Project',
     'website': '',
-    'installable': False,
+    'installable': True,
 
     'sequence': 1,
     'description': """

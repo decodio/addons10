@@ -14,8 +14,8 @@ class CrmAction(models.Model):
     _name = 'crm.action'
     _description = 'CRM Action'
     _order = 'date'
-    # _rec_name = 'display_name'
-    _rec_name = 'details'
+    _rec_name = 'display_name'
+    #_rec_name = 'details'
 
     def default_action_type(self):
         action_types = self.search_action_types()
