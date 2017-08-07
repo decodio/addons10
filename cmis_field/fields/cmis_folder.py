@@ -104,7 +104,7 @@ class CmisFolder(fields.Field):
             fct = self.create_method
             if not callable(fct):
                 fct = getattr(records, fct)
-            fct(self, backend)
+            fct(self, records, backend)
             return
         self._create_in_cmis(records, backend)
 
@@ -146,7 +146,7 @@ class CmisFolder(fields.Field):
         fct = self.create_name_get
         if not callable(fct):
             fct = getattr(records, fct)
-        return fct(self, backend)
+        return fct(self, records, backend)
 
     def get_create_parents(self, records, backend):
         """return the cmis:objectId of the cmis folder to use as parent of the
@@ -162,7 +162,7 @@ class CmisFolder(fields.Field):
             fct = self.create_parent_get
             if not callable(fct):
                 fct = getattr(records, fct)
-            return fct(self, backend)
+            return fct(self, records, backend)
         path_parts = self.get_default_parent_path_parts(records, backend)
         parent_cmis_object = backend.get_folder_by_path_parts(
             path_parts, create_if_not_found=True)
@@ -182,7 +182,7 @@ class CmisFolder(fields.Field):
             fct = self.create_properties_get
             if not callable(fct):
                 fct = getattr(records, fct)
-            return fct(self, backend)
+            return fct(self, records, backend)
         return dict.fromkeys(records.ids, None)
 
     def get_default_parent_path_parts(self, records, backend):
