@@ -85,7 +85,7 @@ class CmisBackend(models.Model):
         }
         r = requests.post(self.alf_folder_template_url, json=payload,
                           auth=self._get_alf_api_auth_params(),
-                          # verify=False  # For self-signed certificates
+                          verify=False  # For self-signed certificates
                           )
         r.raise_for_status()
         resp = r.json()
@@ -100,3 +100,30 @@ class CmisBackend(models.Model):
             create_if_not_found=False,
             cmis_parent_objectid=parent_objectid)
         return cmis_object.getObjectId()
+
+    def create_cmis_folder_from_default_template(self, records,  backend, field):
+        """
+        To be called from other modules
+        :param field: actually cmis_field
+        :param records:
+        :param backend:
+        :return: None, but sets field value
+        """
+        names = field.get_create_names(records, backend)
+        parents = field.get_create_parents(records, backend)
+        source_path_templates_root = [u'', u'Data Dictionary', u'Space Templates']
+        source_path_templates_root.append(str(records._name).replace(".", "_"))
+        source_path = source_path_templates_root
+        source = backend.get_folder_by_path_parts(
+            source_path, create_if_not_found=False)
+        if source:
+            for record in records:
+                obj_id = backend.create_cmis_folder_from_template(
+                    source_objectid=source,
+                    parent_objectid=parents[record.id],
+                    name=names[record.id],
+                    title='',
+                    description=None)
+                field.__set__(record, obj_id)  # value.getObjectId())
+        else:
+            field._create_in_cmis(records, backend)
