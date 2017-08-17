@@ -14,8 +14,8 @@ class CrmAction(models.Model):
     _name = 'crm.action'
     _description = 'CRM Action'
     _order = 'date'
-    _rec_name = 'display_name'
-    #_rec_name = 'details'
+    # _rec_name = 'display_name'
+    _rec_name = 'details'
 
     def default_action_type(self):
         action_types = self.search_action_types()
@@ -95,6 +95,13 @@ class CrmAction(models.Model):
                     action.action_type_id.name, action.details)
             else:
                 action.display_name = u'[%s]' % action.action_type_id.name
+
+    @api.multi
+    def name_get(self):
+        result = []
+        for rec in self:
+            result.append((rec.id, rec.display_name))
+        return result
 
     @api.model
     def _send_email_reminder(self):
