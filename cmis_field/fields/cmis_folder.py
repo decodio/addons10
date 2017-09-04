@@ -67,7 +67,8 @@ class CmisFolder(fields.Field):
         'create_parent_get': None,
         'create_properties_get': None,
         'allow_create': True,
-        'allow_delete': False
+        'allow_delete': False,
+        'copy': False,  # o2m are not copied by default
     }
 
     def __init__(self, backend_name=None, string=None, **kwargs):
