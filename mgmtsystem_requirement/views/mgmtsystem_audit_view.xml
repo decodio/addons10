@@ -31,7 +31,7 @@
             <field name="model">mgmtsystem.audit</field>
             <field name="arch" type="xml">
                 <field name="line_ids" nolabel="1" attrs="{'readonly':[('state','=','done')]}" position="attributes">
-                    <attribute name="contex">{'form_view_ref':'mgmtsystem_requirement.view_mgmtsystem_verification_line_popup_form'}</attribute>
+                    <attribute name="context">{'form_view_ref':'mgmtsystem_requirement.view_mgmtsystem_verification_line_popup_form'}</attribute>
                 </field>
             </field>
         </record>
