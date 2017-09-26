@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mgmtsystem_requirement,access_mgmtsystem_requirement,model_mgmtsystem_requirement,,1,0,0,0
+access_mgmtsystem_requirement_system,access_mgmtsystem_requirement_system,model_mgmtsystem_requirement,base.group_system,1,1,1,1
+access_mgmtsystem_requirement_user,access_mgmtsystem_requirement,model_mgmtsystem_requirement,mgmtsystem.group_mgmtsystem_user,1,0,0,0
+access_mgmtsystem_requirement_viewer,mgmtsystem.nonconformity.stage.viewer,model_mgmtsystem_requirement,mgmtsystem.group_mgmtsystem_viewer,1,0,0,0
+access_mgmtsystem_requirement_manager,mgmtsystem.nonconformity.stage.manager,model_mgmtsystem_requirement,mgmtsystem.group_mgmtsystem_manager,1,1,1,1
