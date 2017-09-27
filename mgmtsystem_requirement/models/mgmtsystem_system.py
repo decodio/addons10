@@ -3,7 +3,7 @@
 # Copyright (C) 2017 Decodio applications ltd.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, _
+from odoo import models, fields
 
 
 class MgmtSystemSystem(models.Model):
@@ -12,5 +12,5 @@ class MgmtSystemSystem(models.Model):
     requirement_ids = fields.One2many(
         'mgmtsystem.requirement',
         inverse_name='system_id',
-        string="Requirements"
+        string="Requirement"
     )

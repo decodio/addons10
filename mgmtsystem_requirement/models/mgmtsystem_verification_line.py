@@ -12,5 +12,5 @@ class MgmtsystemVerificationLine(models.Model):
 
     requirement_id = fields.Many2one(
         'mgmtsystem.requirement',
-        string='Requirements'
+        string='Requirement'
     )
