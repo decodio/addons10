@@ -531,7 +531,14 @@ var CmisMixin = {
                 self.render_datatable();
             }
         });
-
+        // add a listener on parent tab if it exists in order to display the dataTable
+        // modal windows do not trigger DOM_updated for some reason.
+        core.bus.on('view_shown', self.view.ViewManager.is_in_DOM, function () {
+            self.add_tab_listener();
+            if (self.$el.is(':visible')){
+                self.render_datatable();
+            }
+        });
         self.load_cmis_config();
         self.init_cmis_session();
     },
@@ -1072,6 +1079,28 @@ var CmisMixin = {
         var offsetLeft = offset.left;
         var dropdownWidth = dropdown.width();
         var docWidth = $(window).width();
+        var test_modal = button.parents().find('.modal.in');
+        if (button.parents().hasClass('modal in') === true){
+            docWidth = test_modal.find('.modal-content').width();
+            var modal_view_top = test_modal.find('.o_form_view').offset().top;
+            if (dropDownTop > 0 && modal_view_top < 0){
+                dropDownTop = Math.abs(dropDownTop) + Math.abs(modal_view_top);
+
+            }
+            else if (dropDownTop > 0 && modal_view_top > 0){
+                dropDownTop = Math.abs(dropDownTop - modal_view_top);
+
+            }
+            else if (dropDownTop < 0 && modal_view_top < 0){
+                dropDownTop = Math.abs(modal_view_top - dropDownTop);
+
+            }
+            else if (dropDownTop < 0 && modal_view_top > 0){
+                dropDownTop = Math.abs(dropDownTop-modal_view_top) + button.outerHeight();
+
+            }
+            dropdown.css('top', dropDownTop + "px");
+        }
         var subDropdown = dropdown.eq(1);
         var subDropdownWidth = subDropdown.width();
         var isDropdownVisible = (offsetLeft + dropdownWidth <= docWidth);
