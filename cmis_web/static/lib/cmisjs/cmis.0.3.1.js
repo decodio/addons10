@@ -115,7 +115,6 @@
       if (_token) {
           options['token'] = _token;
       }
-
       var r = new CmisRequest(_get(url).query(options)).ok(function (data) {
         for (var repo in data) {
           session.defaultRepository = data[repo];
@@ -1180,6 +1179,7 @@
      * all cmis actions return a CmisRequest
      */
     function CmisRequest(req, text) {
+
       var callback_ok = _noop;
       var callback_notOk = _globalNotOk;
       var callback_error = _globalError;

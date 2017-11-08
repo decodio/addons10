@@ -25,11 +25,15 @@ class CmisBackend(models.Model):
 
     share_location = fields.Char(
         string='Alfresco Share Url',
-        required=True)
+        required=True,
+        default='http://localhost:8080/share'
+    )
 
     alfresco_api_location = fields.Char(
         string='Alfresco Api Url',
-        required=True)
+        required=True,
+        default='http://localhost:8080/alfresco/s/api'
+    )
     alf_folder_template_url = fields.Char(
         compute='_compute_alf_folder_template_url'
     )
