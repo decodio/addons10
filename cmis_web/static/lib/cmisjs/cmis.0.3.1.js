@@ -62,7 +62,7 @@
       return session;
     };
 
-    /**
+    /** DECODIO
      * sets Alfresco ticket (token) for authentication
      *
      * @param {String} alf_ticket
@@ -103,6 +103,18 @@
       _globalError = error || _noop;
       return session;
     };
+
+    /**
+     * sets character set used for non file fields in posted
+     * multipart/form-data resource
+     * @param {string} characterSet
+     * @return {CmisSession}
+     */
+    session.setCharacterSet = function (characterSet) {
+      _characterSet = characterSet;
+      return session;
+    };
+
 
     /**
      * Connects to a cmis server and retrieves repositories,
@@ -1294,6 +1306,7 @@
     var _username = null;
     var _password = null;
     var _alf_ticket = null;
+    var _characterSet;
     var _afterlogin;
 
     var _proxyUrl = null;
@@ -1321,7 +1334,7 @@
         r = request(method, url);
       }
 
-      if (_password) {
+      if (_username && _password) {
         r.auth(_username, _password);
       }
       if (_token) {
@@ -1344,6 +1357,12 @@
 
     var _postMultipart = function (url, options, content, filename) {
       var req = _http('POST', url);
+      if (_characterSet !== undefined && Object.keys(options).length > 0){
+        // IN HTML5, the character set to use for non-file fields can
+        // be specified in a multipart by using a __charset__ field.
+        // https://dev.w3.org/html5/spec-preview/attributes-common-to-form-controls.html#attr-fe-name-charset
+        req.field('_charset_', _characterSet);
+      }
       filename = filename || 'undefined';
       for (var k in options) {
         if (options[k] == 'cmis:name') {
