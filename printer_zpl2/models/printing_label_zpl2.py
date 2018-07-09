@@ -9,7 +9,7 @@ import io
 import logging
 import requests
 from PIL import Image, ImageOps
-from odoo import api, exceptions, fields, models
+from odoo import api, exceptions, fields, models, tools
 from odoo.tools.translate import _
 from odoo.tools.safe_eval import safe_eval
 
@@ -88,6 +88,8 @@ class PrintingLabelZpl2(models.Model):
                 'datetime': datetime,
             })
             data = safe_eval(component.data, eval_args) or ''
+            if data and isinstance(data, basestring):
+                data = tools.ustr(data)
 
             # Generate a list of elements if the component is repeatable
             for idx in range(
@@ -355,6 +357,9 @@ class PrintingLabelZpl2(models.Model):
             if label.test_print_mode and label.record_id and label.printer_id:
                 record = label._get_record()
                 extra = safe_eval(label.extra, {'env': self.env})
+                if extra and isinstance(extra, basestring):
+                    extra = tools.ustr(extra)
+
                 if record:
                     label.print_label(label.printer_id, record, **extra)
 
@@ -379,6 +384,8 @@ class PrintingLabelZpl2(models.Model):
                 url = url.format(
                     dpmm=self.labelary_dpmm, width=width, height=height)
                 extra = safe_eval(self.extra, {'env': self.env})
+                if extra and isinstance(extra, basestring):
+                    extra = tools.ustr(extra)
                 zpl_file = self._generate_zpl2_data(
                     record, labelary_emul=True, **extra)
                 files = {'file': zpl_file}
