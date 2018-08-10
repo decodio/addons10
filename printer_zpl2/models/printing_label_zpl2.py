@@ -251,7 +251,9 @@ class PrintingLabelZpl2(models.Model):
                 label_data.configuration_update(zpl2.CONF_RECALL_LAST_SAVED)
             label_data.label_end()
 
-        return label_data.output()
+        res = label_data.output()  # '^FO10,10^A0N,50,50^FDShipping Lane šđčćž ŠĐČĆŽ^FS'
+        # res = res.replace('^A0N', '~SD20^CF0')
+        return res  # label_data.output() '~HI'
 
     @api.multi
     def print_label(self, printer, record, page_count=1, **extra):
