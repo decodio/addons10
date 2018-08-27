@@ -44,6 +44,7 @@ class PrintingLabelZpl2(models.Model):
     component_ids = fields.One2many(
         comodel_name='printing.label.zpl2.component', inverse_name='label_id',
         string='Label Components',
+        copy=True,
         help='Components which will be printed on the label.')
     restore_saved_config = fields.Boolean(
         string="Restore printer's configuration",
@@ -200,7 +201,7 @@ class PrintingLabelZpl2(models.Model):
             else:
                 if component.component_type == zpl2.BARCODE_QR_CODE:
                     # Adding Control Arguments to QRCode data Label
-                    data = 'MM,A{}'.format(data)
+                    data = u'MM,A{}'.format(data)
 
                 barcode_arguments = dict([
                     (field_name, component[field_name])
