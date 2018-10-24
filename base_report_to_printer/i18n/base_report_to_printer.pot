@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-23 12:33+0000\n"
+"PO-Revision-Date: 2018-10-23 12:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -46,6 +48,22 @@ msgid "Active"
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.ui.menu,name:base_report_to_printer.menu_add_printer_wizard
+msgid "Add Printer"
+msgstr ""
+
+#. module: base_report_to_printer
+#: model:ir.model,name:base_report_to_printer.model_add_printer_wizard
+msgid "Add Printer Wizard"
+msgstr ""
+
+#. module: base_report_to_printer
+#: model:ir.actions.act_window,name:base_report_to_printer.action_add_printer_wizard
+#: model:ir.ui.view,arch_db:base_report_to_printer.add_printer_wizard
+msgid "Add printer"
+msgstr ""
+
+#. module: base_report_to_printer
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_server_address
 msgid "Address"
 msgstr ""
@@ -71,6 +89,7 @@ msgid "Can be restarted"
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.ui.view,arch_db:base_report_to_printer.add_printer_wizard
 #: model:ir.ui.view,arch_db:base_report_to_printer.printer_update_wizard
 #: model:ir.ui.view,arch_db:base_report_to_printer.printing_job_view_form
 msgid "Cancel"
@@ -132,6 +151,7 @@ msgid "Compressed using an unknown algorithm"
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.model.fields,field_description:base_report_to_printer.field_add_printer_wizard_create_uid
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_action_create_uid
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_job_create_uid
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_printer_create_uid
@@ -142,6 +162,7 @@ msgid "Created by"
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.model.fields,field_description:base_report_to_printer.field_add_printer_wizard_create_date
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_action_create_date
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_job_create_date
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_printer_create_date
@@ -202,8 +223,8 @@ msgid "Default Printer"
 msgstr ""
 
 #. module: base_report_to_printer
-#: model:ir.actions.report.xml,name:base_report_to_printer.action_report_1
-msgid "Demo Report 1"
+#: model:ir.model.fields,field_description:base_report_to_printer.field_add_printer_wizard_info
+msgid "Description"
 msgstr ""
 
 #. module: base_report_to_printer
@@ -212,6 +233,7 @@ msgid "Disable"
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.model.fields,field_description:base_report_to_printer.field_add_printer_wizard_display_name
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_action_display_name
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_job_display_name
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_printer_display_name
@@ -226,11 +248,6 @@ msgstr ""
 #: code:addons/base_report_to_printer/static/src/js/qweb_action_manager.js:33
 #, python-format
 msgid "Document sent to the printer "
-msgstr ""
-
-#. module: base_report_to_printer
-#: model:ir.ui.view,arch_db:base_report_to_printer.report_1
-msgid "Dummy report just for tests"
 msgstr ""
 
 #. module: base_report_to_printer
@@ -282,6 +299,7 @@ msgid "Held because the printer is offline"
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.model.fields,field_description:base_report_to_printer.field_add_printer_wizard_id
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_action_id
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_job_id
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_printer_id
@@ -299,6 +317,12 @@ msgstr ""
 #. module: base_report_to_printer
 #: model:ir.model.fields,help:base_report_to_printer.field_printing_server_active
 msgid "If checked, this server is useable."
+msgstr ""
+
+#. module: base_report_to_printer
+#: code:addons/base_report_to_printer/wizards/add_printer_wizard.py:41
+#, python-format
+msgid "Invalid URI."
 msgstr ""
 
 #. module: base_report_to_printer
@@ -329,6 +353,7 @@ msgid "Jobs printed on this printer."
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.model.fields,field_description:base_report_to_printer.field_add_printer_wizard___last_update
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_action___last_update
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_job___last_update
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_printer___last_update
@@ -339,6 +364,7 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.model.fields,field_description:base_report_to_printer.field_add_printer_wizard_write_uid
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_action_write_uid
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_job_write_uid
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_printer_update_wizard_write_uid
@@ -349,6 +375,7 @@ msgid "Last Updated by"
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.model.fields,field_description:base_report_to_printer.field_add_printer_wizard_write_date
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_action_write_date
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_job_write_date
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_printer_update_wizard_write_date
@@ -364,6 +391,7 @@ msgid "List of printers available on this server."
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.model.fields,field_description:base_report_to_printer.field_add_printer_wizard_location
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_printer_location
 msgid "Location"
 msgstr ""
@@ -379,6 +407,7 @@ msgid "Model"
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.model.fields,field_description:base_report_to_printer.field_add_printer_wizard_name
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_action_name
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_job_name
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_printer_name
@@ -584,6 +613,7 @@ msgid "Resources not available to print the job"
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.model.fields,field_description:base_report_to_printer.field_add_printer_wizard_server_id
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_job_server_id
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_printer_server_id
 msgid "Server"
@@ -595,6 +625,7 @@ msgid "Server Error"
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.model.fields,help:base_report_to_printer.field_add_printer_wizard_server_id
 #: model:ir.model.fields,help:base_report_to_printer.field_printing_printer_server_id
 msgid "Server used to access this printer."
 msgstr ""
@@ -649,6 +680,7 @@ msgid "Status message"
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.model.fields,field_description:base_report_to_printer.field_add_printer_wizard_system_name
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_printer_system_name
 msgid "System name"
 msgstr ""
@@ -669,8 +701,13 @@ msgid "This field allows configuring action and printer on a per user basis"
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.ui.view,arch_db:base_report_to_printer.add_printer_wizard
+msgid "This process will add printer."
+msgstr ""
+
+#. module: base_report_to_printer
 #: model:ir.ui.view,arch_db:base_report_to_printer.printer_update_wizard
-msgid "This process will create all missing printers from the current CUPS server."
+msgid "This process will create all missing printers                 from the current CUPS server."
 msgstr ""
 
 #. module: base_report_to_printer
@@ -694,6 +731,7 @@ msgid "Type"
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.model.fields,field_description:base_report_to_printer.field_add_printer_wizard_uri
 #: model:ir.model.fields,field_description:base_report_to_printer.field_printing_printer_uri
 msgid "URI"
 msgstr ""
@@ -747,12 +785,33 @@ msgid "Users"
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.model.fields,help:base_report_to_printer.field_add_printer_wizard_location
+msgid "Warehouse 3, Location"
+msgstr ""
+
+#. module: base_report_to_printer
+#: model:ir.model.fields,help:base_report_to_printer.field_add_printer_wizard_info
+msgid "Zebra Warehouse 3 zone 28, Description in CUPS"
+msgstr ""
+
+#. module: base_report_to_printer
+#: model:ir.model.fields,help:base_report_to_printer.field_add_printer_wizard_name
+msgid "Zebra_wh_3_28, Printer Queue Namein CUPS"
+msgstr ""
+
+#. module: base_report_to_printer
 #: model:ir.model,name:base_report_to_printer.model_ir_actions_report_xml
 msgid "ir.actions.report.xml"
 msgstr ""
 
 #. module: base_report_to_printer
+#: model:ir.ui.view,arch_db:base_report_to_printer.add_printer_wizard
 #: model:ir.ui.view,arch_db:base_report_to_printer.printer_update_wizard
 msgid "or"
+msgstr ""
+
+#. module: base_report_to_printer
+#: model:ir.model.fields,help:base_report_to_printer.field_add_printer_wizard_uri
+msgid "socket://10.134.32.81:9100"
 msgstr ""
 
