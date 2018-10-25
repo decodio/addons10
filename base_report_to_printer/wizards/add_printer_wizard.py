@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
+import subprocess
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
@@ -22,24 +23,35 @@ class AddPrinterWizard(models.TransientModel):
         comodel_name='printing.server', string='Server', required=True,
         help='Server used to access this printer.', default=_default_server)
     system_name = fields.Char("System name", required=True)
-    location = fields.Char("Location", help='Warehouse 3, Location',
+    location = fields.Char("Location", help='e.g. Warehouse 3, Location',
                            required=True)
     info = fields.Char(string='Description',
-                       help='Zebra Warehouse 3 zone 28, Description in CUPS',
+                       help='e.g. Zebra Warehouse 3 zone 28, Description in CUPS',
                        required=True)
     uri = fields.Char(string='URI', required=True,
-                      help='socket://10.134.32.81:9100')
+                      help='e.g. socket://10.134.32.81:9100')
+    printer_driver = fields.Char(
+        string="Printer driver",
+        required=True,
+        help="e.g. drv:///sample.drv/zebra.ppd")
 
     @api.multi
     def add_printer(self):
         self.ensure_one()
         try:
             self.server_id.add_printer(
-                name=self.name,
+                name=self.system_name,
                 device_uri=self.uri,
-                info=self.info,
-                location=self.location
+                info=self.name,
+                location=self.location,
+                ppdname=self.printer_driver
             )
+            printer_model = self.env['printing.printer']
+            printer_id = printer_model.search(
+                [('server_id', '=', self.server_id.id), ('uri', '=', self.uri)],
+                limit=1)
+            if printer_id:
+                printer_id.enable()
         except Exception as a:
             _logger.error("Error: " + str(a))
             raise UserError(_("Invalid URI."))

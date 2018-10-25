@@ -14,6 +14,7 @@
                     <field name="location"/>
                     <field name="info"/>
                     <field name="uri"/>
+                    <field name="printer_driver"/>
                 </group>
                 <footer>
                     <button name="add_printer" string="Add printer"
