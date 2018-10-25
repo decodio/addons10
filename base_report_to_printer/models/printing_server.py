@@ -221,3 +221,25 @@ class PrintingServer(models.Model):
                 purged_jobs.write({'active': False})
 
         return True
+
+    @api.multi
+    def add_printer(self, name, device_uri,
+                    info, location, ppdname=None, raise_on_error=False):
+        """Adds a printer to cups"""
+        self.ensure_one()
+        connection = self._open_connection(raise_on_error=raise_on_error)
+        if not connection:
+            self.printer_ids.write({'status': 'server-error'})
+            return False
+        connection.addPrinter(
+            name=name,         # "Zebra_wh_3_28" Printer Queue Name in CUPS
+            device=device_uri, # "socket://10.134.32.81:9100"
+            info=info,         # "Zebra Warehouse 3 zone 28" Description in CUPS
+            location=location, # "Warehouse 3" Location
+            ppdname=ppdname,   # "drv:///sample.drv/zebra.ppd"
+                               # (lpinfo -m to list all available drivers)
+            )
+
+        self.update_printers()
+        connection.enablePrinter(name)
+        connection.acceptJobs(name)

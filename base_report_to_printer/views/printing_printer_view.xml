@@ -66,6 +66,7 @@
         <field name="arch" type="xml">
             <search string="Printers">
                 <field name="name"/>
+                <field name="uri"/>
                 <field name="system_name"/>
                 <field name="location"/>
                 <field name="status"/>
