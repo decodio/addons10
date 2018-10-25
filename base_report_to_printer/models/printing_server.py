@@ -241,3 +241,5 @@ class PrintingServer(models.Model):
             )
 
         self.update_printers()
+        connection.enablePrinter(name)
+        connection.acceptJobs(name)
