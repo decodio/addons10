@@ -186,3 +186,14 @@ class PrintingPrinter(models.Model):
         self.mapped('server_id').update_printers()
 
         return True
+
+    @api.multi
+    def delete(self):
+        for printer in self:
+            connection = printer.server_id._open_connection()
+            connection.deletePrinter(printer.system_name)
+
+        # Update printers' stats into Odoo
+        self.mapped('server_id').update_printers()
+
+        return True
