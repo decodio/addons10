@@ -169,6 +169,7 @@ class PrintingPrinter(models.Model):
         for printer in self:
             connection = printer.server_id._open_connection()
             connection.enablePrinter(printer.system_name)
+            connection.acceptJobs(printer.system_name)
 
         # Update printers' stats into Odoo
         self.mapped('server_id').update_printers()
@@ -180,6 +181,17 @@ class PrintingPrinter(models.Model):
         for printer in self:
             connection = printer.server_id._open_connection()
             connection.disablePrinter(printer.system_name)
+
+        # Update printers' stats into Odoo
+        self.mapped('server_id').update_printers()
+
+        return True
+
+    @api.multi
+    def delete(self):
+        for printer in self:
+            connection = printer.server_id._open_connection()
+            connection.deletePrinter(printer.system_name)
 
         # Update printers' stats into Odoo
         self.mapped('server_id').update_printers()

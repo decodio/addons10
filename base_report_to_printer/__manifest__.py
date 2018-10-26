@@ -26,7 +26,7 @@
         'views/res_users_view.xml',
         'views/ir_actions_report_xml_view.xml',
         'wizards/printing_printer_update_wizard_view.xml',
-        'wizards/add_printer_wizard_view.xml',
+        'wizards/printing_printer_add_wizard_view.xml',
     ],
     'demo': [
         'demo/report.xml',

@@ -224,7 +224,8 @@ class PrintingServer(models.Model):
 
     @api.multi
     def add_printer(self, name, device_uri,
-                    info, location, raise_on_error=False):
+                    info, location, ppdname=None, raise_on_error=False):
+        """Adds a printer to cups"""
         self.ensure_one()
         connection = self._open_connection(raise_on_error=raise_on_error)
         if not connection:
@@ -235,6 +236,10 @@ class PrintingServer(models.Model):
             device=device_uri, # "socket://10.134.32.81:9100"
             info=info,         # "Zebra Warehouse 3 zone 28" Description in CUPS
             location=location, # "Warehouse 3" Location
-            # filename = file_name, # depreciated
+            ppdname=ppdname,   # "drv:///sample.drv/zebra.ppd"
+                               # (lpinfo -m to list all available drivers)
             )
+
         self.update_printers()
+        connection.enablePrinter(name)
+        connection.acceptJobs(name)

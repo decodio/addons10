@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="printer_add_wizard_view" model="ir.ui.view">
+        <field name="name">printing.printer.add.wizard.view.</field>
+        <field name="model">printing.printer.add.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add printer">
+                <label string="Add or change Printer(Queue Name) on CUPS server" colspan="2"/>
+                <group>
+                    <field name="system_name"/>
+                    <field name="uri"/>
+                    <field name="server_id"/>
+                    <field name="name"/>
+                    <field name="location"/>
+                    <field name="printer_driver"/>
+                </group>
+                <footer>
+                    <button name="add_printer" string="Add printer"
+                            type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_printer_add_wizard" model="ir.actions.act_window">
+        <field name="name">Add printer to CUPS</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">printing.printer.add.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="printer_add_wizard_view"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_printer_add_wizard" name="Add Printer to CUPS"
+              parent="printing_menu" action="action_printer_add_wizard"
+              sequence="50"/>
+
+</odoo>
