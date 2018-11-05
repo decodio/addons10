@@ -240,6 +240,6 @@ class PrintingServer(models.Model):
                                # (lpinfo -m to list all available drivers)
             )
 
-        self.update_printers()
         connection.enablePrinter(name)
         connection.acceptJobs(name)
+        self.update_printers()
