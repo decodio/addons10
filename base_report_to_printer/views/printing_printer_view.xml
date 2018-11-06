@@ -14,9 +14,7 @@
             <form string="Printers">
                 <sheet>
                     <header>
-                        <button name="enable" type="object" string="Enable" attrs="{'invisible': [('status', 'in', ('available', 'printing'))]}"/>
-                        <button name="disable" type="object" string="Disable" attrs="{'invisible': [('status', '=', 'unavailable')]}"/>
-                        <button name="delete" type="object" string="Delete" />
+                        <!--<button name="delete" type="object" string="Delete" />-->
                         <button name="action_cancel_all_jobs" type="object" string="Cancel all running jobs"/>
                     </header>
                     <div class="oe_title">
@@ -36,8 +34,12 @@
                         <field name="uri"/>
                         <field name="model"/>
                         <field name="location"/>
+                    </group>
+                    <group col="3" colspan="4">
                         <field name="status"/>
+                        <button name="enable" type="object" string="Enable" attrs="{'invisible': [('status', 'in', ('available', 'printing'))]}"/>
                         <field name="status_message"/>
+                        <button name="disable" type="object" string="Disable" attrs="{'invisible': [('status', '=', 'unavailable')]}"/>
                     </group>
                     <group>
                         <separator string="Jobs" colspan="2"/>
@@ -88,5 +90,22 @@
         id="printing_printer_menu"
         parent="printing_menu"
         action="printing_printer_action"/>
+
+    <!-- action that creates button "Delete Printer from CUPS" in more menu (action button)  -->
+    <record id="action_delete_printer_from_cups" model="ir.actions.server">
+        <field name="name">Delete Printer from CUPS</field>
+        <field name="model_id" ref="base_report_to_printer.model_printing_printer"/>
+        <field name="state">code</field>
+        <field name="condition">True</field>
+        <field name="code">if object: object.browse(context.get('active_ids', [])).delete()</field>
+    </record>
+
+    <record id="delete_printer_from_cups" model="ir.values">
+        <field name="name">Delete Printer from CUPS</field>
+        <field name="model">printing.printer</field>
+        <field name="key">action</field>
+        <field name="key2">client_action_multi</field>
+        <field name="value" eval="'ir.actions.server,%d'%action_delete_printer_from_cups"/>
+    </record>
 
 </odoo>
