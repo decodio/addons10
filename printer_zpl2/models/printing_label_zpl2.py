@@ -20,6 +20,60 @@ try:
 except ImportError:
     _logger.debug('Cannot `import zpl2`.')
 
+# Decodio
+# Mokeypatching zpl2 library tu support utf-8 characters
+
+
+def _field_data(self, data):
+    """ Add data to the buffer, between start and stop commands """
+    command = u'{start}{data}{stop}'.format(
+        start=self._field_data_start(),
+        data=data,
+        stop=self._field_data_stop(),
+    )
+    return command
+
+
+zpl2.Zpl2._field_data = _field_data
+
+
+def font_data(self, right, down, field_format, data):
+    """ Add a full text in the buffer, with needed formatting commands """
+    reverse = ''
+    if field_format.get(zpl2.ARG_REVERSE_PRINT, False):
+        reverse = self._field_reverse_print()
+    block = ''
+    if field_format.get(zpl2.ARG_IN_BLOCK, False):
+        block = self._field_block(field_format)
+
+    command = u'{origin}{font_format}{reverse}{block}{data}'.format(
+        origin=self._field_origin(right, down),
+        font_format=self._font_format(field_format),
+        reverse=reverse,
+        block=block,
+        data=self._field_data(data),
+    )
+    self._write_command(command)
+
+
+zpl2.Zpl2.font_data = font_data
+
+
+def barcode_data(self, right, down, barcodeType, barcode_format, data):
+    """ Add a full barcode in the buffer, with needed formatting commands
+    """
+    command = u'{default}{origin}{barcode_format}{data}'.format(
+        default=self._barcode_field_default(barcode_format),
+        origin=self._field_origin(right, down),
+        barcode_format=self._barcode_format(barcodeType, barcode_format),
+        data=self._field_data(data),
+    )
+    self._write_command(command)
+
+
+zpl2.Zpl2.barcode_data = barcode_data
+# End monkeypatch
+
 
 class PrintingLabelZpl2(models.Model):
     _name = 'printing.label.zpl2'
